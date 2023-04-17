@@ -1,0 +1,30 @@
+USE MFCapplication
+singledocument and MFC
+****************************************
+in view.h
+protected:
+	CPoint P0, P1;
+
+// 生成的消息映射函数
+*******************************************
+在类向导中
+void CMFCApplicationtest1View::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	P0 = point;
+	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void CMFCApplicationtest1View::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	
+	P1 = point;
+	CDC* pDC = GetDC();//需要使用PDC,故赋值
+	pDC->MoveTo(P0);
+	pDC->LineTo(P1);
+	ReleaseDC(pDC);
+	CView::OnLButtonUp(nFlags, point);
+}
+*******************************************
